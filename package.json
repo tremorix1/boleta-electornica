@@ -1,0 +1,17 @@
+{
+  "name": "boletas-electronicas",
+  "version": "1.0.0",
+  "description": "Esta es una aplicación para realizar boletas electronicas de un local, además se hará la agrupación de folios y libro de ventas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos Pérez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15",
+    "path": "^0.12.7"
+  }
+}

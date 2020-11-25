@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Productos</title>
+
+
+  </head>
+  <body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+    $(function(){
+    $("#nav-placeholder").load("navigation.html");
+    });
+    </script>
+    <!--Aqui debe listar y mandar productos-->
+    <form action="/productos" method="post">
+      Ingrese nombre del producto:
+      <input type="text" name="nombre" size="100"><br>
+      Ingrese precio unitario del producto:
+      <input type="number" name="precioUni" size="100"><br>
+      <input type="submit" value="Guardar producto">
+    </form>
+
+    <form class="" action="/productos" method="get">
+      <table class= "table">
+        <th>
+          <td>Nombre</td>
+          <td>Precio Unitario</td>
+        </th>
+          <script>
+              $.get("productos", function(data){
+                // Obtener la referencia del elemento body
+  var body = document.getElementsByTagName("body")[0];
+  // Crea un elemento <table> y un elemento <tbody>
+  var tabla   = document.createElement("table");
+tabla.classList.add("table");
+  var tblBody = document.createElement("tbody");
+
+                for(let step=0;step<data.productos.length;step++){
+                  var hilera = document.createElement("tr");
+                  for (step2=0;step2<2;step2++){
+                    var celda = document.createElement("td");
+                    if(step2 === 0){
+                      var textoCelda = document.createTextNode(data.productos[step].nombre);
+                    }else if (step2===1) {
+                      var textoCelda = document.createTextNode(data.productos[step].precioUni);
+
+                    }
+                    celda.appendChild(textoCelda);
+                    hilera.appendChild(celda);
+                  }
+                  // agrega la hilera al final de la tabla (al final del elemento tblbody)
+    tblBody.appendChild(hilera);
+                }
+                // posiciona el <tbody> debajo del elemento <table>
+  tabla.appendChild(tblBody);
+  // appends <table> into <body>
+  body.appendChild(tabla);
+              });
+
+          </script>
+
+      </table>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
